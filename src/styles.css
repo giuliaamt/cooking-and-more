@@ -1,0 +1,1076 @@
+@font-face {
+    font-family: "F37 Zagma";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src:
+            url("./fonts/F37Zagma-Regular.ttf") format("truetype"),
+            local("F37 Zagma Regular"),
+            local("F37Zagma-Regular");
+}
+
+@font-face {
+    font-family: "F37 Zagma";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src:
+            url("./fonts/F37Zagma-BoldWide.ttf") format("truetype"),
+            local("F37 Zagma Bold Wide"),
+            local("F37Zagma-BoldWide");
+}
+
+@font-face {
+    font-family: "F37 Zagma";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src:
+            url("./fonts/F37Zagma-BoldWide.ttf") format("truetype"),
+            local("F37 Zagma ExtraBold"),
+            local("F37Zagma-ExtraBold");
+}
+
+:root {
+    --green: #0e5f35;
+    --red: #f74012;
+    --purple: #8655c6;
+    --yellow: #f39c0d;
+    --brown: #964326;
+    --black: #050505;
+    --white: #ffffff;
+
+    --page: 1728px;
+    --radius: 60px;
+    --x: clamp(44px, 5.78vw, 100px);
+
+    /* Type scale: coerente tra hero e tutte le card */
+    --heading-size: clamp(44px, 3.76vw, 65px);
+    --copy-size: clamp(16px, 1.45vw, 25px);
+    --copy-line-height: 1.3;
+    --number-size: clamp(18px, 1.74vw, 30px);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: #202020;
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    color: var(--black);
+    font-family: "F37 Zagma", Arial, sans-serif;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1,
+h2,
+p {
+    margin: 0;
+}
+
+h1,
+h2 {
+    font-size: var(--heading-size);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1;
+}
+
+p,
+input,
+textarea,
+button {
+    font: inherit;
+    font-size: var(--copy-size);
+    letter-spacing: 0;
+    line-height: var(--copy-line-height);
+}
+
+/* Tutti i testi descrittivi condividono la stessa scala tipografica */
+.copy p {
+    font-size: var(--copy-size);
+    line-height: var(--copy-line-height);
+}
+
+.snap {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.site {
+    position: relative;
+    width: min(100%, var(--page));
+    margin: 0 auto;
+    background: var(--white);
+}
+
+/* HERO DESKTOP / TABLET */
+
+.hero {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    display: grid;
+    grid-template-columns: 48.6% 51.4%;
+    min-height: clamp(760px, 64.65vw, 1117px);
+    background: var(--white);
+}
+
+.hero-copy {
+    position: relative;
+    padding: 0 0 0 clamp(44px, 2.9vw, 50px);
+}
+
+.logo {
+    position: absolute;
+    top: clamp(10px, 0.7vw, 12px);
+    left: clamp(24px, 1.62vw, 28px);
+    z-index: 50;
+    width: clamp(124px, 12.85vw, 222px);
+}
+
+.hero-copy h1 {
+    margin-top: clamp(152px, 11.46vw, 198px);
+}
+
+.copy {
+    width: min(100%, 656px);
+}
+
+.hero-text {
+    width: min(100%, 712px);
+    margin-top: clamp(48px, 3.94vw, 68px);
+}
+
+.hero-text p + p {
+    margin-top: 1.3em;
+}
+
+.hero-visual {
+    position: relative;
+    width: calc(100% + 56px);
+    min-height: clamp(760px, 64.65vw, 1117px);
+    overflow: hidden;
+    background: var(--green);
+}
+
+.dots {
+    position: absolute;
+    top: 22px;
+    right: 54px;
+    display: flex;
+    gap: 28px;
+    z-index: 3;
+}
+
+.dots span {
+    width: clamp(28px, 2.55vw, 44px);
+    aspect-ratio: 1;
+    border-radius: 999px;
+    background: var(--yellow);
+}
+
+.num {
+    position: absolute;
+    top: clamp(69px, 4vw, 69px);
+    right: clamp(58px, 5vw, 86px);
+    z-index: 5;
+    font-weight: 800;
+    font-size: var(--number-size);
+    line-height: 1;
+}
+
+.hero-num {
+    top: clamp(118px, 8.9vw, 154px);
+    color: var(--white);
+}
+
+.chef-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center bottom;
+}
+
+/* CARDS BASE */
+
+.deck {
+    position: relative;
+    z-index: 10;
+    isolation: isolate;
+    margin-top: max(-241px, -13.95vw);
+}
+
+.card {
+    position: sticky;
+    min-height: clamp(760px, 59.72vw, 1032px);
+    display: grid;
+    grid-template-columns: 45.5% 54.5%;
+    gap: 0;
+    padding: clamp(69px, 5.5vw, 96px) var(--x);
+    overflow: hidden;
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.kitchen {
+    background: var(--red);
+    color: var(--white);
+}
+
+.consulting {
+    background: var(--purple);
+    color: var(--white);
+}
+
+.catering {
+    background: var(--yellow);
+    color: var(--black);
+}
+
+.card-copy {
+    position: relative;
+    z-index: 3;
+}
+
+.card-copy .copy {
+    margin-top: clamp(130px, 10.5vw, 181px);
+}
+
+.art {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    justify-self: center;
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.art-cabbage {
+    width: min(80%, 702px);
+    margin-top: clamp(120px, 10.6vw, 184px);
+}
+
+.art-eggplants {
+    width: min(80%, 702px);
+    margin-top: clamp(130px, 13.7vw, 238px);
+}
+
+.art-truck {
+    width: min(100%, 905px);
+    margin-top: clamp(70px, 8.56vw, 148px);
+}
+
+/* CONTACT BASE */
+
+.contact {
+    min-height: clamp(760px, 54.63vw, 944px);
+    grid-template-columns: 40.5% 59.5%;
+    grid-template-rows: auto 1fr;
+    padding: clamp(70px, 5.3vw, 92px) clamp(52px, 3.82vw, 66px);
+    background: var(--brown);
+    color: var(--white);
+}
+
+.contact-heading {
+    grid-column: 1 / -1;
+    align-self: start;
+}
+
+.contact-details {
+    align-self: start;
+    margin-top: clamp(80px, 6vw, 115px);
+    padding-left: 7px;
+}
+
+.contact-form {
+    align-self: start;
+    display: grid;
+    gap: clamp(28px, 2.2vw, 38px);
+    width: min(100%, 792px);
+    margin-top: clamp(80px, 6vw, 115px);
+}
+
+.field {
+    position: relative;
+    display: block;
+}
+
+.field span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    border: 0.5px solid var(--white);
+    border-radius: 0;
+    background: transparent;
+    color: var(--white);
+    outline: none;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: var(--white);
+    opacity: 1;
+}
+
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus {
+    border-color: var(--white);
+    -webkit-text-fill-color: var(--white);
+    box-shadow: 0 0 0 1000px var(--brown) inset;
+    transition: background-color 9999s ease-out;
+}
+
+.field input {
+    height: 43px;
+    padding: 0 16px;
+}
+
+.field textarea {
+    min-height: 292px;
+    padding: 18px 16px;
+    resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: var(--white);
+}
+
+.contact-submit {
+    justify-self: end;
+    width: 96px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.contact-submit:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.contact-status {
+    min-height: 1.3em;
+    margin-top: -8px;
+    color: var(--white);
+    font-size: clamp(13px, 1vw, 16px);
+    line-height: 1.3;
+    text-align: right;
+}
+
+.contact-status.is-error {
+    color: var(--white);
+}
+
+/* =========================================================
+   SCHEDARIO DESKTOP
+   Un solo breakpoint: non entra mai insieme al tablet.
+   ========================================================= */
+
+@media (min-width: 1101px) {
+    .deck {
+        --folder-step: clamp(88px, 10dvh, 140px);
+    }
+
+    .card {
+        position: sticky;
+        min-height: 0;
+        height: calc(100dvh - var(--folder-top, 0px));
+        padding-top: clamp(44px, 4vw, 56px);
+        padding-bottom: clamp(32px, 3vw, 44px);
+    }
+
+    .card-copy .copy {
+        margin-top: clamp(54px, 4.5vw, 78px);
+    }
+
+    .kitchen {
+        --folder-top: 0px;
+        top: var(--folder-top);
+        z-index: 1;
+    }
+
+    .consulting {
+        --folder-top: calc(var(--folder-step) * 1);
+        top: var(--folder-top);
+        z-index: 2;
+    }
+
+    .catering {
+        --folder-top: calc(var(--folder-step) * 2);
+        top: var(--folder-top);
+        z-index: 3;
+    }
+
+    .contact {
+        --folder-top: calc(var(--folder-step) * 3);
+        top: var(--folder-top);
+        z-index: 4;
+        height: calc(100dvh - var(--folder-top));
+        min-height: 0;
+        max-height: none;
+        padding: clamp(44px, 4vw, 56px) clamp(34px, 4vw, 66px) 36px;
+        grid-template-columns: 38% 62%;
+        grid-template-rows: auto 1fr;
+    }
+
+    .art-cabbage,
+    .art-eggplants {
+        width: min(82%, 702px);
+        margin-top: clamp(34px, 4vw, 68px);
+    }
+
+    .art-truck {
+        width: min(96%, 905px);
+        margin-top: clamp(24px, 3vw, 52px);
+    }
+
+    .contact-heading {
+        grid-column: 1 / -1;
+    }
+
+    .contact-details {
+        margin-top: clamp(38px, 4vw, 58px);
+        padding-left: 0;
+    }
+
+    .contact-details p {
+        font-size: clamp(15px, 1.25vw, 22px);
+        line-height: 1.25;
+    }
+
+    .contact-form {
+        width: min(100%, 640px);
+        margin-top: clamp(38px, 4vw, 56px);
+        gap: 18px;
+    }
+
+    .field span {
+        left: 16px;
+        font-size: clamp(14px, 1.15vw, 20px);
+    }
+
+    .field input {
+        height: 32px;
+        padding: 0 16px;
+    }
+
+    .field textarea {
+        min-height: 135px;
+        max-height: 155px;
+        padding: 12px 16px;
+        resize: none;
+    }
+
+    .field-textarea span {
+        top: 10px;
+    }
+
+    .contact-submit {
+        width: 82px;
+        height: 22px;
+        font-size: 13px;
+        line-height: 22px;
+    }
+}
+
+/* =========================================================
+   TABLET 769–1100
+   Questo blocco è autosufficiente: a 805 × 691 non riceve
+   più regole dello schedario desktop.
+   ========================================================= */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+    :root {
+        --radius: 48px;
+        --x: clamp(34px, 5vw, 56px);
+        --heading-size: clamp(38px, 5.5vw, 54px);
+        --copy-size: clamp(15px, 1.8vw, 19px);
+        --copy-line-height: 1.25;
+        --number-size: clamp(18px, 2.4vw, 24px);
+    }
+
+    html,
+    body {
+        background: #202020;
+    }
+
+    .site {
+        width: min(100%, var(--page));
+        margin: 0 auto;
+        overflow-x: clip;
+        background: var(--white);
+    }
+
+    .hero {
+        position: sticky;
+        top: 0;
+        z-index: 0;
+        grid-template-columns: 48.6% 51.4%;
+        min-height: 100dvh;
+    }
+
+    .hero-copy {
+        min-height: 0;
+        padding-left: var(--x);
+    }
+
+    .logo {
+        top: 12px;
+        left: 28px;
+        width: clamp(124px, 14vw, 160px);
+        transform: none;
+    }
+
+    .hero-copy h1 {
+        margin-top: clamp(116px, 16dvh, 154px);
+    }
+
+    .hero-text {
+        width: min(100%, 90%);
+        margin-top: clamp(30px, 5dvh, 48px);
+    }
+
+    .hero-visual {
+        width: calc(100% + 40px);
+        min-height: 100dvh;
+    }
+
+    .dots {
+        top: 22px;
+        right: 42px;
+        gap: 22px;
+    }
+
+    .dots span {
+        width: clamp(28px, 4vw, 38px);
+    }
+
+    .hero-num {
+        top: clamp(90px, 13dvh, 118px);
+        right: 52px;
+    }
+
+    .deck {
+        --folder-step: clamp(56px, 9dvh, 72px);
+        margin-top: max(-120px, -12dvh);
+    }
+
+    .card {
+        position: sticky;
+        min-height: 0;
+        height: calc(100dvh - var(--folder-top, 0px));
+        grid-template-columns: 48% 52%;
+        padding: clamp(30px, 4dvh, 42px) var(--x) clamp(22px, 3dvh, 32px);
+    }
+
+    .kitchen {
+        --folder-top: 0px;
+        top: var(--folder-top);
+        z-index: 1;
+    }
+
+    .consulting {
+        --folder-top: calc(var(--folder-step) * 1);
+        top: var(--folder-top);
+        z-index: 2;
+    }
+
+    .catering {
+        --folder-top: calc(var(--folder-step) * 2);
+        top: var(--folder-top);
+        z-index: 3;
+    }
+
+    .contact {
+        --folder-top: calc(var(--folder-step) * 3);
+        top: var(--folder-top);
+        z-index: 4;
+        height: calc(100dvh - var(--folder-top));
+        min-height: 0;
+        max-height: none;
+        padding: clamp(30px, 4dvh, 42px) clamp(28px, 4vw, 44px) 24px;
+        grid-template-columns: 36% 64%;
+        grid-template-rows: auto 1fr;
+    }
+
+    .card-copy .copy {
+        width: min(100%, 520px);
+        margin-top: clamp(28px, 5dvh, 44px);
+    }
+
+    .art-cabbage,
+    .art-eggplants {
+        width: min(68%, 430px);
+        margin-top: clamp(12px, 3dvh, 28px);
+    }
+
+    .art-truck {
+        width: min(82%, 560px);
+        margin-top: clamp(8px, 2dvh, 20px);
+    }
+
+    .contact-heading {
+        grid-column: 1 / -1;
+    }
+
+    .contact-details,
+    .contact-form {
+        margin-top: clamp(22px, 4dvh, 36px);
+    }
+
+    .contact-details {
+        padding-left: 0;
+    }
+
+    .contact-details p {
+        font-size: clamp(14px, 1.7vw, 18px);
+        line-height: 1.2;
+    }
+
+    .contact-form {
+        width: min(100%, 600px);
+        gap: 14px;
+    }
+
+    .field span {
+        left: 14px;
+        font-size: clamp(13px, 1.6vw, 17px);
+    }
+
+    .field input {
+        height: 32px;
+        padding: 0 14px;
+    }
+
+    .field textarea {
+        min-height: clamp(88px, 15dvh, 120px);
+        max-height: 120px;
+        padding: 11px 14px;
+        resize: none;
+    }
+
+    .field-textarea span {
+        top: 9px;
+    }
+
+    .contact-submit {
+        width: 78px;
+        height: 22px;
+        font-size: 12px;
+        line-height: 22px;
+    }
+}
+
+/* Tablet molto basso, incluso 805 × 691 */
+@media (min-width: 769px) and (max-width: 1100px) and (max-height: 720px) {
+    :root {
+        --heading-size: clamp(34px, 5vw, 42px);
+        --copy-size: 15px;
+        --copy-line-height: 1.18;
+        --number-size: 18px;
+    }
+
+    .hero-copy h1 {
+        margin-top: 98px;
+    }
+
+    .hero-text {
+        margin-top: 26px;
+    }
+
+    .deck {
+        --folder-step: 58px;
+        margin-top: -72px;
+    }
+
+    .card {
+        padding-top: 28px;
+        padding-bottom: 20px;
+    }
+
+    .card-copy .copy {
+        margin-top: 24px;
+    }
+
+    .art-cabbage,
+    .art-eggplants {
+        width: min(58%, 340px);
+        margin-top: 8px;
+    }
+
+    .art-truck {
+        width: min(70%, 450px);
+        margin-top: 4px;
+    }
+
+    .contact {
+        padding: 28px 28px 20px;
+    }
+
+    .contact-details,
+    .contact-form {
+        margin-top: 20px;
+    }
+
+    .field textarea {
+        min-height: 84px;
+        max-height: 84px;
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+    :root {
+        --radius: 0;
+        --x: 19px;
+        --heading-size: 28px;
+        --copy-size: 15px;
+        --copy-line-height: 18px;
+        --number-size: 18px;
+    }
+
+    html {
+        background: var(--white);
+        scroll-snap-type: none;
+    }
+
+    body {
+        background: var(--white);
+        overflow-x: hidden;
+    }
+
+    .site {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        overflow-x: hidden;
+        background: var(--white);
+    }
+
+    .snap {
+        scroll-snap-align: none;
+        scroll-snap-stop: normal;
+    }
+
+    /* HERO MOBILE */
+
+    .hero {
+        position: relative;
+        top: auto;
+        z-index: 1;
+        display: block;
+        min-height: 740px;
+        padding-top: 78px;
+        background: var(--white);
+    }
+
+    .logo {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        z-index: 30;
+        width: 112px;
+        transform: translateX(-50%);
+    }
+
+    .hero-copy {
+        position: relative;
+        z-index: 5;
+        /* min-height gestita da .hero-visual */
+        padding: 0 19px;
+        color: var(--white);
+    }
+
+    .hero-copy h1 {
+        position: relative;
+        z-index: 6;
+        margin-top: 25px;
+        color: var(--white);
+    }
+
+    .hero-text {
+        position: relative;
+        z-index: 6;
+        width: 343px;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .hero-text p + p {
+        margin-top: 18px;
+    }
+
+    .hero-visual {
+        position: absolute;
+        top: 78px;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 662px;
+        min-height: 662px;
+        overflow: hidden;
+        background: var(--green);
+    }
+
+    .dots {
+        display: none;
+    }
+
+    .hero-num {
+        top: 31px;
+        right: 19px;
+        color: var(--white);
+        font-size: 20px;
+    }
+
+    .chef-art {
+        position: absolute;
+        inset: auto auto 0 auto;
+        right: 24px;
+        bottom: 0;
+        width: 245px;
+        height: auto;
+        max-width: none;
+        object-fit: contain;
+    }
+
+    /* CARDS MOBILE SCHEDARIO */
+
+    .deck {
+        position: relative;
+        z-index: 10;
+        margin-top: 0;
+        isolation: isolate;
+        --mobile-folder-step: 72px;
+    }
+
+    .card {
+        position: sticky;
+        display: block;
+        width: 100%;
+        min-height: auto;
+        height: calc(100svh - var(--mobile-folder-top, 0px));
+        padding: 34px 19px 0;
+        /* border-radius: 26px 26px 0 0; */
+        overflow: hidden;
+    }
+
+    .kitchen {
+        --mobile-folder-top: 0px;
+        top: var(--mobile-folder-top);
+        z-index: 1;
+    }
+
+    .consulting {
+        --mobile-folder-top: calc(var(--mobile-folder-step) * 1);
+        top: var(--mobile-folder-top);
+        z-index: 2;
+    }
+
+    .catering {
+        --mobile-folder-top: calc(var(--mobile-folder-step) * 2);
+        top: var(--mobile-folder-top);
+        z-index: 3;
+    }
+
+    .contact {
+        --mobile-folder-top: calc(var(--mobile-folder-step) * 3);
+        top: var(--mobile-folder-top);
+        z-index: 4;
+    }
+
+    .card .num {
+        top: 38px;
+        right: 19px;
+        font-size: 18px;
+    }
+
+    .card-copy {
+        position: relative;
+        z-index: 4;
+    }
+
+    .card-copy h2 {
+        max-width: 325px;
+    }
+
+    .kitchen .card-copy h2 {
+        width: 190px;
+    }
+
+    .consulting .card-copy h2,
+    .catering .card-copy h2 {
+        width: 325px;
+    }
+
+    .card-copy .copy {
+        width: 343px;
+        max-width: 100%;
+        margin-top: 34px;
+    }
+
+    .art {
+        position: absolute;
+        z-index: 2;
+        margin: 0;
+        max-width: none;
+        object-fit: contain;
+    }
+
+    .art-cabbage {
+        left: 50%;
+        bottom: 18px;
+        width: 350px;
+        transform: translateX(-50%);
+    }
+
+    .art-eggplants {
+        left: 50%;
+        bottom: 22px;
+        width: 350px;
+        transform: translateX(-50%);
+    }
+
+    .art-truck {
+        left: 50%;
+        bottom: 0;
+        width: 350px;
+        transform: translateX(-50%);
+    }
+
+    .catering h2,
+    .catering .num {
+        color: var(--black);
+    }
+
+    /* CONTACT MOBILE SCHEDARIO */
+
+    .contact {
+        position: sticky;
+        display: block;
+        width: 100%;
+        min-height: auto;
+        height: calc(100svh - var(--mobile-folder-top));
+        padding: 34px 19px 24px;
+        /* border-radius: 26px 26px 0 0; */
+        background: var(--brown);
+        color: var(--white);
+        overflow: hidden;
+    }
+
+    .contact .num {
+        top: 38px;
+        right: 19px;
+        color: var(--white);
+        font-size: 18px;
+    }
+
+    .contact-heading h2 {
+        width: 270px;
+        max-width: 100%;
+        color: var(--white);
+    }
+
+    .contact-details {
+        margin-top: 36px;
+        padding-left: 0;
+    }
+
+    .contact-details p {
+        font-size: 13px;
+        line-height: 15.5px;
+    }
+
+    .contact-form {
+        position: relative;
+        display: grid;
+        width: 100%;
+        max-width: 343px;
+        margin-top: 28px;
+        gap: 16px;
+    }
+
+    .field span {
+        left: 12px;
+        color: var(--white);
+        font-size: 13px;
+        line-height: normal;
+    }
+
+    .field input {
+        height: 34px;
+        padding: 0 12px;
+    }
+
+    .field textarea {
+        min-height: 120px;
+        padding: 12px;
+        resize: none;
+    }
+
+    .field-textarea span {
+        top: 9px;
+    }
+
+    .contact-submit {
+        justify-self: end;
+        width: 76px;
+        height: 22px;
+        padding: 0;
+        border: 0;
+        background: var(--white);
+        color: var(--black);
+        font-size: 12px;
+        line-height: 22px;
+        cursor: pointer;
+    }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+        scroll-snap-type: none;
+    }
+}
