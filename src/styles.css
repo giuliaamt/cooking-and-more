@@ -1089,7 +1089,7 @@ button {
     }
 
     .contact {
-        --mobile-folder-top: calc(var(--mobile-folder-step) * 3);
+        --mobile-folder-top: calc((var(--mobile-folder-step) * 3) + clamp(44px, 12vw, 64px));
         top: var(--mobile-folder-top);
         z-index: 4;
     }
@@ -1193,8 +1193,10 @@ button {
     .contact-details {
         display: grid;
         width: 100%;
-        max-width: 343px;
-        margin-top: clamp(12px, 2.5svh, 18px);
+        max-width: 330px;
+        margin-top: clamp(18px, 3svh, 26px);
+        margin-right: auto;
+        margin-left: auto;
         padding-left: 0;
         font-size: 13px;
         line-height: 15.5px;
@@ -1204,8 +1206,10 @@ button {
         position: relative;
         display: grid;
         width: 100%;
-        max-width: 343px;
-        margin-top: clamp(14px, 2svh, 18px);
+        max-width: 330px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: clamp(48px, 7svh, 64px);
         gap: clamp(10px, 1.6svh, 14px);
     }
 
@@ -1269,7 +1273,7 @@ button {
     }
 
     .contact {
-        --mobile-folder-top: calc(var(--mobile-folder-step) * 3);
+        --mobile-folder-top: calc((var(--mobile-folder-step) * 3) + 44px);
         min-height: 550px;
         padding-bottom: 28px;
     }
@@ -1280,7 +1284,7 @@ button {
     }
 
     .contact-form {
-        margin-top: 14px;
+        margin-top: 40px;
         gap: 10px;
     }
 
