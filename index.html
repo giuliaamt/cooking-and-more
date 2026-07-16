@@ -163,6 +163,9 @@
 <script>
   const logo = document.querySelector(".logo");
   const heroTitle = document.querySelector(".hero-copy h1");
+  const cateringCard = document.querySelector(".catering");
+  const cateringTitle = document.querySelector("#catering-title");
+  const mobileCardsQuery = window.matchMedia("(max-width: 768px)");
 
   const getSafeExpandedLogoScale = () => {
     if (!logo || !heroTitle) {
@@ -189,6 +192,35 @@
     document.documentElement.style.setProperty("--logo-scale", scale.toFixed(3));
   };
 
+  const updateMobileContactTop = () => {
+    if (!mobileCardsQuery.matches || !cateringCard || !cateringTitle) {
+      document.documentElement.style.removeProperty("--mobile-contact-top");
+      return;
+    }
+
+    const cateringStyles = window.getComputedStyle(cateringCard);
+    const cateringStickyTop = parseFloat(cateringStyles.top) || 0;
+    const cateringRect = cateringCard.getBoundingClientRect();
+    const titleRect = cateringTitle.getBoundingClientRect();
+    const titleBottomInCard = titleRect.bottom - cateringRect.top;
+    const contactTop = Math.ceil(cateringStickyTop + titleBottomInCard);
+
+    document.documentElement.style.setProperty("--mobile-contact-top", `${contactTop}px`);
+  };
+
+  let mobileContactFrame = 0;
+
+  const scheduleMobileContactTop = () => {
+    if (mobileContactFrame) {
+      return;
+    }
+
+    mobileContactFrame = window.requestAnimationFrame(() => {
+      updateMobileContactTop();
+      mobileContactFrame = 0;
+    });
+  };
+
   let logoScaleFrame = 0;
 
   window.addEventListener("scroll", () => {
@@ -203,8 +235,23 @@
   }, { passive: true });
 
   updateLogoScale();
+  updateMobileContactTop();
 
-  window.addEventListener("resize", updateLogoScale);
+  window.addEventListener("resize", () => {
+    updateLogoScale();
+    scheduleMobileContactTop();
+  });
+
+  window.addEventListener("orientationchange", scheduleMobileContactTop);
+  mobileCardsQuery.addEventListener("change", scheduleMobileContactTop);
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", scheduleMobileContactTop);
+  }
+
+  if (document.fonts) {
+    document.fonts.ready.then(scheduleMobileContactTop);
+  }
 
   const contactForm = document.querySelector(".contact-form");
   const contactStatus = document.querySelector(".contact-status");

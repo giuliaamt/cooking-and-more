@@ -1057,6 +1057,7 @@ button {
         margin-top: calc(var(--mobile-folder-step) * -1);
         isolation: isolate;
         --mobile-folder-step: clamp(56px, 8svh, 68px);
+        --mobile-card-padding-top: clamp(20px, 3svh, 28px);
     }
 
     .card {
@@ -1065,7 +1066,7 @@ button {
         width: 100%;
         min-height: auto;
         height: calc(100svh - var(--mobile-folder-top, 0px));
-        padding: clamp(20px, 3svh, 28px) 19px 0;
+        padding: var(--mobile-card-padding-top) 19px 0;
         border-radius: 26px 26px 0 0;
         overflow: hidden;
     }
@@ -1089,8 +1090,8 @@ button {
     }
 
     .contact {
-        --mobile-folder-top: calc((var(--mobile-folder-step) * 3) + clamp(44px, 12vw, 64px));
-        top: var(--mobile-folder-top);
+        --mobile-folder-top: calc((var(--mobile-folder-step) * 2) + var(--mobile-card-padding-top) + var(--heading-size));
+        top: var(--mobile-contact-top, var(--mobile-folder-top));
         z-index: 4;
     }
 
@@ -1135,22 +1136,22 @@ button {
 
     .art-cabbage {
         left: 50%;
-        bottom: clamp(20px, 4svh, 36px);
-        width: min(82vw, 330px);
+        bottom: clamp(56px, 9svh, 82px);
+        width: min(94vw, 390px);
         transform: translateX(-50%);
     }
 
     .art-eggplants {
         left: 50%;
-        bottom: clamp(20px, 4svh, 38px);
-        width: min(82vw, 330px);
+        bottom: clamp(56px, 9svh, 84px);
+        width: min(94vw, 390px);
         transform: translateX(-50%);
     }
 
     .art-truck {
         left: 50%;
-        bottom: clamp(24px, 4svh, 40px);
-        width: min(78vw, 315px);
+        bottom: clamp(58px, 9svh, 86px);
+        width: min(92vw, 375px);
         transform: translateX(-50%);
     }
 
@@ -1254,6 +1255,7 @@ button {
 
     .deck {
         --mobile-folder-step: clamp(52px, 8svh, 58px);
+        --mobile-card-padding-top: clamp(18px, 3svh, 24px);
         margin-top: calc(var(--mobile-folder-step) * -1);
     }
 
@@ -1263,17 +1265,17 @@ button {
 
     .art-cabbage,
     .art-eggplants {
-        width: min(68vw, 260px);
-        bottom: 18px;
+        width: min(82vw, 315px);
+        bottom: 44px;
     }
 
     .art-truck {
-        width: min(66vw, 250px);
-        bottom: 24px;
+        width: min(80vw, 300px);
+        bottom: 50px;
     }
 
     .contact {
-        --mobile-folder-top: calc((var(--mobile-folder-step) * 3) + 44px);
+        --mobile-folder-top: calc((var(--mobile-folder-step) * 2) + var(--mobile-card-padding-top) + var(--heading-size));
         min-height: 550px;
         padding-bottom: 28px;
     }
