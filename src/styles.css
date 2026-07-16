@@ -178,7 +178,7 @@ button {
 .dots {
     position: absolute;
     top: 22px;
-    right: clamp(96px, 7vw, 122px);
+    right: clamp(42px, 3.5vw, 60px);
     display: flex;
     gap: 28px;
     z-index: 3;
@@ -646,7 +646,7 @@ button {
 
     .dots {
         top: 22px;
-        right: 78px;
+        right: 38px;
         gap: 22px;
     }
 
@@ -926,8 +926,8 @@ button {
         --radius: 0;
         --x: 19px;
         --heading-size: 28px;
-        --copy-size: 15px;
-        --copy-line-height: 18px;
+        --copy-size: 16px;
+        --copy-line-height: 20px;
         --number-size: 18px;
     }
 
@@ -938,14 +938,14 @@ button {
 
     body {
         background: var(--white);
-        overflow-x: hidden;
+        overflow-x: clip;
     }
 
     .site {
         width: 100%;
         max-width: none;
         margin: 0;
-        overflow-x: hidden;
+        overflow-x: clip;
         background: var(--white);
     }
 
@@ -957,9 +957,9 @@ button {
     /* HERO MOBILE */
 
     .hero {
-        position: relative;
-        top: auto;
-        z-index: 1;
+        position: sticky;
+        top: 0;
+        z-index: 0;
         display: block;
         min-height: 740px;
         padding-top: 78px;
@@ -972,7 +972,7 @@ button {
         left: 50%;
         z-index: 30;
         width: 112px;
-        transform: translateX(-50%) scale(var(--logo-scale));
+        transform: translateX(-50%);
         transform-origin: top center;
     }
 
@@ -996,7 +996,7 @@ button {
         z-index: 6;
         width: 343px;
         max-width: 100%;
-        margin-top: 20px;
+        margin-top: 76px;
     }
 
     .hero-text p + p {
@@ -1016,12 +1016,24 @@ button {
     }
 
     .dots {
+        top: 20px;
+        right: 19px;
+        display: flex;
+        gap: 0;
+        z-index: 8;
+    }
+
+    .dots span {
         display: none;
     }
 
+    .dot-link {
+        width: 34px;
+    }
+
     .hero-num {
-        top: 31px;
-        right: 19px;
+        top: 62px;
+        right: 23px;
         color: var(--white);
         font-size: 20px;
     }
@@ -1042,9 +1054,9 @@ button {
     .deck {
         position: relative;
         z-index: 10;
-        margin-top: 0;
+        margin-top: calc(var(--mobile-folder-step) * -1);
         isolation: isolate;
-        --mobile-folder-step: 88px;
+        --mobile-folder-step: clamp(56px, 8svh, 68px);
     }
 
     .card {
@@ -1053,8 +1065,8 @@ button {
         width: 100%;
         min-height: auto;
         height: calc(100svh - var(--mobile-folder-top, 0px));
-        padding: 24px 19px 0;
-        /* border-radius: 26px 26px 0 0; */
+        padding: clamp(20px, 3svh, 28px) 19px 0;
+        border-radius: 26px 26px 0 0;
         overflow: hidden;
     }
 
@@ -1077,13 +1089,13 @@ button {
     }
 
     .contact {
-        --mobile-folder-top: calc((var(--mobile-folder-step) * 3) + 44px);
+        --mobile-folder-top: calc(var(--mobile-folder-step) * 3);
         top: var(--mobile-folder-top);
         z-index: 4;
     }
 
     .card .num {
-        top: 28px;
+        top: clamp(24px, 3.5svh, 32px);
         right: 19px;
         font-size: 18px;
     }
@@ -1094,22 +1106,23 @@ button {
     }
 
     .card-copy h2 {
-        max-width: 325px;
+        max-width: calc(100% - 76px);
+        white-space: nowrap;
     }
 
     .kitchen .card-copy h2 {
-        width: 190px;
+        width: calc(100% - 76px);
     }
 
     .consulting .card-copy h2,
     .catering .card-copy h2 {
-        width: 325px;
+        width: calc(100% - 76px);
     }
 
     .card-copy .copy {
         width: 343px;
         max-width: 100%;
-        margin-top: 34px;
+        margin-top: clamp(22px, 4svh, 32px);
     }
 
     .art {
@@ -1122,22 +1135,22 @@ button {
 
     .art-cabbage {
         left: 50%;
-        bottom: 18px;
-        width: 350px;
+        bottom: clamp(20px, 4svh, 36px);
+        width: min(82vw, 330px);
         transform: translateX(-50%);
     }
 
     .art-eggplants {
         left: 50%;
-        bottom: 22px;
-        width: 350px;
+        bottom: clamp(20px, 4svh, 38px);
+        width: min(82vw, 330px);
         transform: translateX(-50%);
     }
 
     .art-truck {
         left: 50%;
-        bottom: 54px;
-        width: 350px;
+        bottom: clamp(24px, 4svh, 40px);
+        width: min(78vw, 315px);
         transform: translateX(-50%);
     }
 
@@ -1153,32 +1166,35 @@ button {
         display: block;
         width: 100%;
         min-height: auto;
-        height: calc(100svh - var(--mobile-folder-top));
-        padding: 34px 19px 24px;
-        /* border-radius: 26px 26px 0 0; */
+        height: auto;
+        min-height: clamp(470px, 64svh, 560px);
+        padding: clamp(18px, 2.6svh, 24px) 19px clamp(28px, 5svh, 42px);
+        border-radius: 26px 26px 0 0;
         background: var(--brown);
         color: var(--white);
         overflow: hidden;
     }
 
     .contact .num {
-        top: 38px;
+        top: clamp(24px, 3.5svh, 32px);
         right: 19px;
         color: var(--white);
         font-size: 18px;
     }
 
     .contact-heading h2 {
-        width: 270px;
+        width: calc(100% - 76px);
         max-width: 100%;
         color: var(--white);
+        font-size: 26px;
+        line-height: 0.95;
     }
 
     .contact-details {
         display: grid;
         width: 100%;
         max-width: 343px;
-        margin-top: 18px;
+        margin-top: clamp(12px, 2.5svh, 18px);
         padding-left: 0;
         font-size: 13px;
         line-height: 15.5px;
@@ -1189,8 +1205,8 @@ button {
         display: grid;
         width: 100%;
         max-width: 343px;
-        margin-top: 28px;
-        gap: 16px;
+        margin-top: clamp(14px, 2svh, 18px);
+        gap: clamp(10px, 1.6svh, 14px);
     }
 
     .field span {
@@ -1206,7 +1222,7 @@ button {
     }
 
     .field textarea {
-        min-height: 120px;
+        min-height: clamp(86px, 14svh, 108px);
         padding: 12px;
         resize: none;
     }
@@ -1222,6 +1238,68 @@ button {
         padding: 0 14px;
         font-size: 12px;
         cursor: pointer;
+    }
+}
+
+@media (max-width: 768px) and (max-height: 720px) {
+    :root {
+        --heading-size: 24px;
+        --copy-size: 15px;
+        --copy-line-height: 17px;
+    }
+
+    .deck {
+        --mobile-folder-step: clamp(52px, 8svh, 58px);
+        margin-top: calc(var(--mobile-folder-step) * -1);
+    }
+
+    .card-copy .copy {
+        margin-top: 18px;
+    }
+
+    .art-cabbage,
+    .art-eggplants {
+        width: min(68vw, 260px);
+        bottom: 18px;
+    }
+
+    .art-truck {
+        width: min(66vw, 250px);
+        bottom: 24px;
+    }
+
+    .contact {
+        --mobile-folder-top: calc(var(--mobile-folder-step) * 3);
+        min-height: 550px;
+        padding-bottom: 28px;
+    }
+
+    .contact-heading h2 {
+        width: calc(100% - 70px);
+        font-size: 23px;
+    }
+
+    .contact-form {
+        margin-top: 14px;
+        gap: 10px;
+    }
+
+    .field input {
+        height: 30px;
+    }
+
+    .field textarea {
+      
+    }
+
+    .contact-details {
+        margin-top: 10px;
+        font-size: 15px;
+        line-height: 14px;
+    }
+
+    .contact-submit {
+        height: 28px;
     }
 }
 
