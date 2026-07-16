@@ -169,7 +169,7 @@ button {
 
 .hero-visual {
     position: relative;
-    width: calc(100% + 56px);
+    width: 100%;
     min-height: clamp(760px, 64.65vw, 1117px);
     overflow: hidden;
     background: var(--green);
@@ -225,7 +225,7 @@ button {
 
 .hero-num {
     top: clamp(118px, 8.9vw, 154px);
-    right: calc(clamp(96px, 7vw, 122px) + 56px);
+    right: clamp(96px, 7vw, 122px);
     color: var(--white);
 }
 
@@ -640,7 +640,7 @@ button {
     }
 
     .hero-visual {
-        width: calc(100% + 40px);
+        width: 100%;
         min-height: 100dvh;
     }
 
@@ -657,7 +657,7 @@ button {
 
     .hero-num {
         top: clamp(90px, 13dvh, 118px);
-        right: calc(clamp(96px, 7vw, 122px) + 40px);
+        right: clamp(96px, 7vw, 122px);
     }
 
     .deck {
