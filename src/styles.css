@@ -49,6 +49,7 @@
     --copy-size: clamp(16px, 1.45vw, 25px);
     --copy-line-height: 1.3;
     --number-size: clamp(18px, 1.74vw, 30px);
+    --logo-scale: 1.35;
 }
 
 * {
@@ -144,6 +145,9 @@ button {
     left: clamp(24px, 1.62vw, 28px);
     z-index: 50;
     width: clamp(124px, 12.85vw, 222px);
+    transform: scale(var(--logo-scale));
+    transform-origin: top left;
+    will-change: transform;
 }
 
 .hero-copy h1 {
@@ -174,23 +178,45 @@ button {
 .dots {
     position: absolute;
     top: 22px;
-    right: 54px;
+    right: clamp(96px, 7vw, 122px);
     display: flex;
     gap: 28px;
     z-index: 3;
 }
 
-.dots span {
+.dots span,
+.dot-link {
     width: clamp(28px, 2.55vw, 44px);
     aspect-ratio: 1;
     border-radius: 999px;
     background: var(--yellow);
 }
 
+.dot-link {
+    display: grid;
+    place-items: center;
+    color: var(--green);
+}
+
+.dot-link svg {
+    width: 58%;
+    height: 58%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.dot-link:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
 .num {
     position: absolute;
     top: clamp(69px, 4vw, 69px);
-    right: clamp(58px, 5vw, 86px);
+    right: clamp(96px, 7vw, 122px);
     z-index: 5;
     font-weight: 800;
     font-size: var(--number-size);
@@ -199,6 +225,7 @@ button {
 
 .hero-num {
     top: clamp(118px, 8.9vw, 154px);
+    right: calc(clamp(96px, 7vw, 122px) + 56px);
     color: var(--white);
 }
 
@@ -300,11 +327,22 @@ button {
 
 .contact-details {
     align-self: start;
+    grid-column: 1;
+    display: grid;
+    gap: 4px;
+    width: min(100%, 360px);
     margin-top: clamp(80px, 6vw, 115px);
-    padding-left: 7px;
+    font-style: normal;
+    font-size: clamp(15px, 1.15vw, 20px);
+    line-height: 1.25;
+}
+
+.contact-details a {
+    color: inherit;
 }
 
 .contact-form {
+    grid-column: 2;
     align-self: start;
     display: grid;
     gap: clamp(28px, 2.2vw, 38px);
@@ -370,20 +408,43 @@ button {
 
 .contact-submit {
     justify-self: end;
-    width: 96px;
-    height: 24px;
-    padding: 0;
-    border: 0;
-    background: var(--white);
-    color: var(--black);
-    font-size: 16px;
-    line-height: 24px;
+    min-width: 118px;
+    height: 38px;
+    padding: 0 18px;
+    border: 1px solid var(--white);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0;
     cursor: pointer;
+    transition:
+        background-color 180ms ease,
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.contact-submit:hover,
+.contact-submit:focus-visible {
+    background: var(--white);
+    color: var(--brown);
+}
+
+.contact-submit:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+.contact-submit:active {
+    transform: translateY(1px);
 }
 
 .contact-submit:disabled {
     cursor: wait;
     opacity: 0.65;
+    transform: none;
 }
 
 .contact-status {
@@ -406,7 +467,14 @@ button {
 
 @media (min-width: 1101px) {
     .deck {
-        --folder-step: clamp(88px, 10dvh, 140px);
+        --folder-step: clamp(124px, 13dvh, 156px);
+    }
+
+    .card-copy h2,
+    .contact-heading h2 {
+        max-width: none;
+        overflow-wrap: normal;
+        white-space: nowrap;
     }
 
     .card {
@@ -467,11 +535,12 @@ button {
     }
 
     .contact-details {
-        margin-top: clamp(38px, 4vw, 58px);
+        margin-top: clamp(38px, 2vw, 58px);
         padding-left: 0;
+        width: min(100%, 320px);
     }
 
-    .contact-details p {
+    .contact-details {
         font-size: clamp(15px, 1.25vw, 22px);
         line-height: 1.25;
     }
@@ -504,10 +573,10 @@ button {
     }
 
     .contact-submit {
-        width: 82px;
-        height: 22px;
+        min-width: 104px;
+        height: 34px;
+        padding: 0 16px;
         font-size: 13px;
-        line-height: 22px;
     }
 }
 
@@ -556,7 +625,7 @@ button {
         top: 12px;
         left: 28px;
         width: clamp(124px, 14vw, 160px);
-        transform: none;
+        transform: scale(var(--logo-scale));
     }
 
     .hero-copy h1 {
@@ -575,21 +644,22 @@ button {
 
     .dots {
         top: 22px;
-        right: 42px;
+        right: 78px;
         gap: 22px;
     }
 
-    .dots span {
+    .dots span,
+    .dot-link {
         width: clamp(28px, 4vw, 38px);
     }
 
     .hero-num {
         top: clamp(90px, 13dvh, 118px);
-        right: 52px;
+        right: calc(clamp(96px, 7vw, 122px) + 40px);
     }
 
     .deck {
-        --folder-step: clamp(56px, 9dvh, 72px);
+        --folder-step: clamp(98px, 12dvh, 112px);
         margin-top: max(-120px, -12dvh);
     }
 
@@ -599,6 +669,13 @@ button {
         height: calc(100dvh - var(--folder-top, 0px));
         grid-template-columns: 48% 52%;
         padding: clamp(30px, 4dvh, 42px) var(--x) clamp(22px, 3dvh, 32px);
+    }
+
+    .card-copy h2,
+    .contact-heading h2 {
+        max-width: none;
+        overflow-wrap: normal;
+        white-space: nowrap;
     }
 
     .kitchen {
@@ -651,22 +728,20 @@ button {
         grid-column: 1 / -1;
     }
 
-    .contact-details,
-    .contact-form {
-        margin-top: clamp(22px, 4dvh, 36px);
-    }
-
     .contact-details {
+        width: min(100%, 260px);
+        margin-top: clamp(22px, 4dvh, 36px);
         padding-left: 0;
     }
 
-    .contact-details p {
+    .contact-details {
         font-size: clamp(14px, 1.7vw, 18px);
         line-height: 1.2;
     }
 
     .contact-form {
         width: min(100%, 600px);
+        margin-top: clamp(22px, 4dvh, 36px);
         gap: 14px;
     }
 
@@ -692,10 +767,95 @@ button {
     }
 
     .contact-submit {
-        width: 78px;
-        height: 22px;
+        min-width: 96px;
+        height: 30px;
+        padding: 0 14px;
         font-size: 12px;
-        line-height: 22px;
+    }
+}
+
+/* Desktop basso: mantiene lo schedario leggibile senza titoli su due righe */
+@media (min-width: 1101px) and (max-height: 820px) {
+    :root {
+        --heading-size: 52px;
+        --copy-size: 18px;
+        --copy-line-height: 1.18;
+        --number-size: 22px;
+    }
+
+    .deck {
+        --folder-step: 118px;
+    }
+
+    .card {
+        padding-top: 38px;
+        padding-bottom: 26px;
+    }
+
+    .card-copy .copy {
+        margin-top: 34px;
+    }
+
+    .contact {
+        padding-top: 38px;
+        padding-bottom: 26px;
+    }
+
+    .contact-details,
+    .contact-form {
+        margin-top: 30px;
+    }
+
+    .field textarea {
+        min-height: 118px;
+        max-height: 140px;
+    }
+}
+
+@media (min-width: 1101px) and (max-height: 680px) {
+    :root {
+        --heading-size: 44px;
+        --copy-size: 16px;
+        --copy-line-height: 1.15;
+        --number-size: 20px;
+    }
+
+    .deck {
+        --folder-step: 96px;
+    }
+
+    .card {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
+    .card-copy .copy {
+        margin-top: 24px;
+    }
+
+    .contact {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
+    .contact-details,
+    .contact-form {
+        margin-top: 22px;
+    }
+
+    .field input {
+        height: 30px;
+    }
+
+    .field textarea {
+        min-height: 92px;
+        max-height: 110px;
+    }
+
+    .contact-submit {
+        min-width: 96px;
+        height: 30px;
+        font-size: 12px;
     }
 }
 
@@ -717,12 +877,12 @@ button {
     }
 
     .deck {
-        --folder-step: 58px;
+        --folder-step: 74px;
         margin-top: -72px;
     }
 
     .card {
-        padding-top: 28px;
+        padding-top: 24px;
         padding-bottom: 20px;
     }
 
@@ -810,7 +970,8 @@ button {
         left: 50%;
         z-index: 30;
         width: 112px;
-        transform: translateX(-50%);
+        transform: translateX(-50%) scale(var(--logo-scale));
+        transform-origin: top center;
     }
 
     .hero-copy {
@@ -881,7 +1042,7 @@ button {
         z-index: 10;
         margin-top: 0;
         isolation: isolate;
-        --mobile-folder-step: 72px;
+        --mobile-folder-step: 88px;
     }
 
     .card {
@@ -890,7 +1051,7 @@ button {
         width: 100%;
         min-height: auto;
         height: calc(100svh - var(--mobile-folder-top, 0px));
-        padding: 34px 19px 0;
+        padding: 24px 19px 0;
         /* border-radius: 26px 26px 0 0; */
         overflow: hidden;
     }
@@ -920,7 +1081,7 @@ button {
     }
 
     .card .num {
-        top: 38px;
+        top: 28px;
         right: 19px;
         font-size: 18px;
     }
@@ -1012,11 +1173,11 @@ button {
     }
 
     .contact-details {
-        margin-top: 36px;
+        display: grid;
+        width: 100%;
+        max-width: 343px;
+        margin-top: 18px;
         padding-left: 0;
-    }
-
-    .contact-details p {
         font-size: 13px;
         line-height: 15.5px;
     }
@@ -1054,14 +1215,10 @@ button {
 
     .contact-submit {
         justify-self: end;
-        width: 76px;
-        height: 22px;
-        padding: 0;
-        border: 0;
-        background: var(--white);
-        color: var(--black);
+        min-width: 96px;
+        height: 32px;
+        padding: 0 14px;
         font-size: 12px;
-        line-height: 22px;
         cursor: pointer;
     }
 }

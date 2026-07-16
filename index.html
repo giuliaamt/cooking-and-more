@@ -36,13 +36,25 @@
       </div>
     </div>
 
-    <div class="hero-visual" aria-hidden="true">
+    <div class="hero-visual">
       <div class="dots">
-        <span></span>
-        <span></span>
+        <!--<span aria-hidden="true"></span>-->
+        <a
+          class="dot-link"
+          href="https://www.instagram.com/un_cuoco_in_campagna"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram Un cuoco in campagna"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="5" y="5" width="14" height="14" rx="4"></rect>
+            <circle cx="12" cy="12" r="3.25"></circle>
+            <circle cx="16.5" cy="7.5" r="1"></circle>
+          </svg>
+        </a>
       </div>
 
-      <b class="num hero-num">01</b>
+      <b class="num hero-num" aria-hidden="true">01</b>
 
       <img class="chef-art" src="/src/assets/figma-chef.png" alt="" />
     </div>
@@ -123,14 +135,6 @@
         <h2 id="contact-title">Prendiamoci un caffè</h2>
       </div>
 
-      <!--<div class="contact-details">
-        <p>
-          Nome cognome<br />
-          mail<br />
-          telefono
-        </p>
-      </div>-->
-
       <form class="contact-form" action="https://formspree.io/f/mvzegnzk" method="POST">
         <input type="text" name="_gotcha" style="display: none" />
         <label class="field">
@@ -146,11 +150,62 @@
         <button class="contact-submit" type="submit">INVIA</button>
         <p class="contact-status" role="status" aria-live="polite"></p>
       </form>
+
+      <address class="contact-details">
+        <span>Andrea Bertolucci</span>
+        <a href="tel:+393939529241">+39 39 395 292 41</a>
+        <a href="mailto:info@cookingandmore.it">info@cookingandmore.it</a>
+      </address>
     </article>
   </section>
 </main>
 
 <script>
+  const logo = document.querySelector(".logo");
+  const heroTitle = document.querySelector(".hero-copy h1");
+
+  const getSafeExpandedLogoScale = () => {
+    if (!logo || !heroTitle) {
+      return 1;
+    }
+
+    document.documentElement.style.setProperty("--logo-scale", "1");
+
+    const logoRect = logo.getBoundingClientRect();
+    const titleRect = heroTitle.getBoundingClientRect();
+    const safeGap = 24;
+    const availableHeight = titleRect.top - logoRect.top - safeGap;
+    const maxSafeScale = availableHeight / logoRect.height;
+
+    return Math.max(1, Math.min(2, maxSafeScale));
+  };
+
+  const updateLogoScale = () => {
+    const shrinkDistance = 240;
+    const progress = Math.min(window.scrollY / shrinkDistance, 1);
+    const expandedScale = getSafeExpandedLogoScale();
+    const scale = 1 + (expandedScale - 1) * (1 - progress);
+
+    document.documentElement.style.setProperty("--logo-scale", scale.toFixed(3));
+  };
+
+  let logoScaleFrame = 0;
+
+  window.addEventListener("scroll", () => {
+    if (logoScaleFrame) {
+      return;
+    }
+
+    logoScaleFrame = window.requestAnimationFrame(() => {
+      updateLogoScale();
+      logoScaleFrame = 0;
+    });
+  }, { passive: true });
+
+  updateLogoScale();
+
+  window.addEventListener("resize", updateLogoScale);
+
   const contactForm = document.querySelector(".contact-form");
   const contactStatus = document.querySelector(".contact-status");
   const contactSubmit = document.querySelector(".contact-submit");
