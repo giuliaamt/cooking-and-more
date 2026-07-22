@@ -1231,7 +1231,13 @@ button {
         margin-right: auto;
         margin-left: auto;
         margin-top: clamp(48px, 7svh, 64px);
+        padding: 0 1px;
         gap: clamp(10px, 1.6svh, 14px);
+    }
+
+    .field input,
+    .field textarea {
+        border-width: 1px;
     }
 
     .field span {
