@@ -109,7 +109,7 @@
       <b class="num">04</b>
 
       <div class="card-copy">
-        <h2 id="catering-title">il catering</h2>
+        <h2 id="catering-title">Il catering</h2>
 
         <div class="copy">
           <p>
@@ -162,10 +162,12 @@
 
 <script>
   const logo = document.querySelector(".logo");
+  const heroCopy = document.querySelector(".hero-copy");
   const heroTitle = document.querySelector(".hero-copy h1");
   const cateringCard = document.querySelector(".catering");
   const cateringTitle = document.querySelector("#catering-title");
   const mobileCardsQuery = window.matchMedia("(max-width: 768px)");
+  const logoVisibleInsetRatio = 345 / 1920;
 
   const getSafeExpandedLogoScale = () => {
     if (!logo || !heroTitle) {
@@ -190,6 +192,14 @@
     const scale = 1 + (expandedScale - 1) * (1 - progress);
 
     document.documentElement.style.setProperty("--logo-scale", scale.toFixed(3));
+
+    if (logo && heroCopy) {
+      const textLeft = parseFloat(window.getComputedStyle(heroCopy).paddingLeft) || 0;
+      const logoWidth = parseFloat(window.getComputedStyle(logo).width) || 0;
+      const logoLeft = textLeft - (logoWidth * scale * logoVisibleInsetRatio);
+
+      document.documentElement.style.setProperty("--logo-left", `${logoLeft.toFixed(2)}px`);
+    }
   };
 
   const updateMobileContactTop = () => {
