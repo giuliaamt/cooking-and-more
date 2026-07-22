@@ -64,14 +64,14 @@
   </section>
 
   <section class="deck" aria-label="Servizi Cooking & More">
-    <article class="card kitchen snap" aria-labelledby="kitchen-title" tabindex="0">
+    <article class="card kitchen snap" aria-labelledby="kitchen-title" aria-describedby="kitchen-description" tabindex="0">
       <b class="num" aria-hidden="true">02</b>
 
       <div class="card-copy">
         <h2 id="kitchen-title">La mia cucina</h2>
 
         <div class="copy">
-          <p>
+          <p id="kitchen-description">
             La cucina sostenibile è un approccio che unisce gusto, salute e rispetto per l’ambiente.
             Si basa sull’utilizzo di ingredienti locali, stagionali e biologici, riducendo l’impatto dei
             trasporti e favorendo la biodiversità. Promuove una gestione responsabile delle risorse
@@ -86,14 +86,14 @@
       <img class="art art-cabbage" src="/src/assets/figma-cabbage.png" alt="" />
     </article>
 
-    <article class="card consulting snap" aria-labelledby="consulting-title" tabindex="0">
+    <article class="card consulting snap" aria-labelledby="consulting-title" aria-describedby="consulting-description" tabindex="0">
       <b class="num" aria-hidden="true">03</b>
 
       <div class="card-copy">
         <h2 id="consulting-title">La consulenza</h2>
 
         <div class="copy">
-          <p>
+          <p id="consulting-description">
             Ogni grande evento si ricorda per ciò che si porta in tavola. La consulenza da chef
             trasforma idee e occasioni in esperienze gastronomiche su misura, curate in ogni dettaglio.
             Che si tratti di eventi privati, cene esclusive, catering o progetti aziendali, ogni menu
@@ -108,14 +108,14 @@
       <img class="art art-eggplants" src="/src/assets/figma-eggplants.png" alt="" />
     </article>
 
-    <article class="card catering snap" aria-labelledby="catering-title" tabindex="0">
+    <article class="card catering snap" aria-labelledby="catering-title" aria-describedby="catering-description" tabindex="0">
       <b class="num" aria-hidden="true">04</b>
 
       <div class="card-copy">
         <h2 id="catering-title">Il catering</h2>
 
         <div class="copy">
-          <p>
+          <p id="catering-description">
             Un catering non è solo un servizio, ma il cuore dell’esperienza che gli ospiti porteranno
             con sé. Con Cooking and More, ogni evento prende forma attraverso una proposta
             gastronomica personalizzata, pensata per valorizzare il contesto e soddisfare ogni
@@ -131,7 +131,7 @@
       <img class="art art-truck" src="/src/assets/figma-truck.png" alt="" />
     </article>
 
-    <article class="card contact snap" aria-labelledby="contact-title" tabindex="0">
+    <article class="card contact snap" aria-labelledby="contact-title" aria-describedby="contact-details" tabindex="0">
       <b class="num" aria-hidden="true">05</b>
 
       <div class="contact-heading">
@@ -154,7 +154,7 @@
         <p class="contact-status" role="status" aria-live="polite"></p>
       </form>
 
-      <address class="contact-details">
+      <address class="contact-details" id="contact-details">
         <span>Andrea Bertolucci</span>
         <a href="tel:+393939529241">+39 39 395 292 41</a>
         <a href="mailto:info@cookingandmore.it">info@cookingandmore.it</a>
