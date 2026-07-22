@@ -86,6 +86,25 @@ a {
     text-decoration: none;
 }
 
+.skip-link {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1000;
+    padding: 10px 14px;
+    background: var(--black);
+    color: var(--white);
+    font-weight: 700;
+    transform: translateY(calc(-100% - 24px));
+    transition: transform 160ms ease;
+}
+
+.skip-link:focus-visible {
+    transform: translateY(0);
+    outline: 2px solid var(--white);
+    outline-offset: 3px;
+}
+
 h1,
 h2,
 p {
@@ -276,6 +295,11 @@ button {
     padding: clamp(69px, 5.5vw, 96px) var(--x);
     overflow: hidden;
     border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.card:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: -12px;
 }
 
 .kitchen {
@@ -653,7 +677,7 @@ button {
 
     .hero-copy {
         min-height: 0;
-        padding-left: var(--x);
+        padding: 0 clamp(34px, 4vw, 48px);
     }
 
     .logo {
@@ -668,8 +692,10 @@ button {
     }
 
     .hero-text {
-        width: min(100%, 90%);
+        width: min(100%, 520px);
         margin-top: clamp(30px, 5dvh, 48px);
+        margin-right: auto;
+        margin-left: auto;
     }
 
     .hero-visual {
@@ -745,6 +771,8 @@ button {
     .card-copy .copy {
         width: min(100%, 520px);
         margin-top: clamp(28px, 5dvh, 44px);
+        margin-right: auto;
+        margin-left: auto;
     }
 
     .art-cabbage,
@@ -1022,7 +1050,7 @@ button {
         position: relative;
         z-index: 5;
         /* min-height gestita da .hero-visual */
-        padding: 0 19px;
+        padding: 0 clamp(24px, 7vw, 34px);
         color: var(--white);
     }
 
@@ -1036,9 +1064,10 @@ button {
     .hero-text {
         position: relative;
         z-index: 6;
-        width: 343px;
-        max-width: 100%;
-        margin-top: 76px;
+        width: min(100%, 343px);
+        margin-top: 60px;
+        margin-right: auto;
+        margin-left: auto;
         padding-right: 0;
     }
 
@@ -1172,9 +1201,10 @@ button {
     }
 
     .card-copy .copy {
-        width: 343px;
-        max-width: 100%;
+        width: min(100%, 343px);
         margin-top: clamp(22px, 4svh, 32px);
+        margin-right: auto;
+        margin-left: auto;
     }
 
     .art {

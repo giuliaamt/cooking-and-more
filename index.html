@@ -8,6 +8,7 @@
 </head>
 
 <body>
+<a class="skip-link" href="#filosofia-title">Salta al contenuto</a>
 <main class="site" id="top">
 
 
@@ -63,8 +64,8 @@
   </section>
 
   <section class="deck" aria-label="Servizi Cooking & More">
-    <article class="card kitchen snap" aria-labelledby="kitchen-title">
-      <b class="num">02</b>
+    <article class="card kitchen snap" aria-labelledby="kitchen-title" tabindex="0">
+      <b class="num" aria-hidden="true">02</b>
 
       <div class="card-copy">
         <h2 id="kitchen-title">La mia cucina</h2>
@@ -85,8 +86,8 @@
       <img class="art art-cabbage" src="/src/assets/figma-cabbage.png" alt="" />
     </article>
 
-    <article class="card consulting snap" aria-labelledby="consulting-title">
-      <b class="num">03</b>
+    <article class="card consulting snap" aria-labelledby="consulting-title" tabindex="0">
+      <b class="num" aria-hidden="true">03</b>
 
       <div class="card-copy">
         <h2 id="consulting-title">La consulenza</h2>
@@ -107,8 +108,8 @@
       <img class="art art-eggplants" src="/src/assets/figma-eggplants.png" alt="" />
     </article>
 
-    <article class="card catering snap" aria-labelledby="catering-title">
-      <b class="num">04</b>
+    <article class="card catering snap" aria-labelledby="catering-title" tabindex="0">
+      <b class="num" aria-hidden="true">04</b>
 
       <div class="card-copy">
         <h2 id="catering-title">Il catering</h2>
@@ -130,8 +131,8 @@
       <img class="art art-truck" src="/src/assets/figma-truck.png" alt="" />
     </article>
 
-    <article class="card contact snap" aria-labelledby="contact-title">
-      <b class="num">05</b>
+    <article class="card contact snap" aria-labelledby="contact-title" tabindex="0">
+      <b class="num" aria-hidden="true">05</b>
 
       <div class="contact-heading">
         <h2 id="contact-title">Prendiamoci un caffè</h2>
@@ -162,6 +163,7 @@
           href="https://www.instagram.com/un_cuoco_in_campagna"
           target="_blank"
           rel="noopener noreferrer"
+          tabindex="-1"
           aria-label="Instagram Un cuoco in campagna"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -182,6 +184,8 @@
   const heroTitle = document.querySelector(".hero-copy h1");
   const cateringCard = document.querySelector(".catering");
   const cateringTitle = document.querySelector("#catering-title");
+  const skipLink = document.querySelector(".skip-link");
+  const lastFocusLink = document.querySelector(".contact-details a[href^='mailto:']");
   const mobileCardsQuery = window.matchMedia("(max-width: 768px)");
   const logoVisibleInsetRatio = 345 / 1920;
 
@@ -277,6 +281,21 @@
 
   if (document.fonts) {
     document.fonts.ready.then(scheduleMobileContactTop);
+  }
+
+  if (lastFocusLink && skipLink) {
+    lastFocusLink.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab" || event.shiftKey) {
+        return;
+      }
+
+      event.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      });
+      skipLink.focus({ preventScroll: true });
+    });
   }
 
   const contactForm = document.querySelector(".contact-form");
