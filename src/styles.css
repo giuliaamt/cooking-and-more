@@ -1175,9 +1175,8 @@ button {
         position: sticky;
         display: block;
         width: 100%;
-        min-height: auto;
-        height: auto;
-        min-height: clamp(470px, 64svh, 560px);
+        height: calc(100svh - var(--mobile-contact-top, var(--mobile-folder-top)));
+        min-height: 0;
         padding: clamp(18px, 2.6svh, 24px) 19px clamp(28px, 5svh, 42px);
         border-radius: 26px 26px 0 0;
         background: var(--brown);
@@ -1297,7 +1296,6 @@ button {
 
     .contact {
         --mobile-folder-top: calc((var(--mobile-folder-step) * 2) + var(--mobile-card-padding-top) + var(--heading-size));
-        min-height: 550px;
         padding-bottom: 28px;
     }
 
