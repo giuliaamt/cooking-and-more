@@ -180,6 +180,7 @@
 
 <script>
   const logo = document.querySelector(".logo");
+  const logoImage = document.querySelector(".logo img");
   const heroCopy = document.querySelector(".hero-copy");
   const heroTitle = document.querySelector(".hero-copy h1");
   const cateringCard = document.querySelector(".catering");
@@ -188,10 +189,18 @@
   const lastFocusLink = document.querySelector(".contact-details a[href^='mailto:']");
   const mobileCardsQuery = window.matchMedia("(max-width: 768px)");
   const logoVisibleInsetRatio = 345 / 1920;
+  const desktopFallbackLogoScale = 1.35;
 
   const getSafeExpandedLogoScale = () => {
     if (!logo || !heroTitle) {
       return 1;
+    }
+
+    const logoImageReady = !logoImage || (logoImage.complete && logoImage.naturalWidth > 0);
+    const fontsReady = !document.fonts || document.fonts.status === "loaded";
+
+    if (!logoImageReady || !fontsReady) {
+      return desktopFallbackLogoScale;
     }
 
     document.documentElement.style.setProperty("--logo-scale", "1");
@@ -201,6 +210,10 @@
     const safeGap = 24;
     const availableHeight = titleRect.top - logoRect.top - safeGap;
     const maxSafeScale = availableHeight / logoRect.height;
+
+    if (!Number.isFinite(maxSafeScale) || maxSafeScale <= 0) {
+      return desktopFallbackLogoScale;
+    }
 
     return Math.max(1, Math.min(2, maxSafeScale));
   };
@@ -280,7 +293,14 @@
   }
 
   if (document.fonts) {
-    document.fonts.ready.then(scheduleMobileContactTop);
+    document.fonts.ready.then(() => {
+      updateLogoScale();
+      scheduleMobileContactTop();
+    });
+  }
+
+  if (logoImage && !logoImage.complete) {
+    logoImage.addEventListener("load", updateLogoScale, { once: true });
   }
 
   if (lastFocusLink && skipLink) {
