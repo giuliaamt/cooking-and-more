@@ -16,7 +16,10 @@
     <a class="logo" href="#top" aria-label="Cooking & More home">
       <img src="/src/assets/figma-logo.gif" alt="Cooking & More" />
     </a>
-    <p class="hero-payoff">il gusto della sostenibilità</p>
+    <p class="hero-payoff">
+      <span class="hero-payoff-line">il gusto della</span>
+      <span class="hero-payoff-line">sostenibilità</span>
+    </p>
 
     <div class="hero-copy">
 
@@ -190,6 +193,7 @@
   const mobileCardsQuery = window.matchMedia("(max-width: 768px)");
   const logoVisibleInsetRatio = 345 / 1920;
   const desktopFallbackLogoScale = 1.35;
+  const mobileCollapsedPayoffScale = 0.88;
 
   const getSafeExpandedLogoScale = () => {
     if (!logo || !heroTitle) {
@@ -223,8 +227,12 @@
     const progress = Math.min(window.scrollY / shrinkDistance, 1);
     const expandedScale = mobileCardsQuery.matches ? 1.42 : getSafeExpandedLogoScale();
     const scale = 1 + (expandedScale - 1) * (1 - progress);
+    const payoffScale = mobileCardsQuery.matches
+      ? 1 - ((1 - mobileCollapsedPayoffScale) * progress)
+      : 1;
 
     document.documentElement.style.setProperty("--logo-scale", scale.toFixed(3));
+    document.documentElement.style.setProperty("--payoff-scale", payoffScale.toFixed(3));
 
     if (logo && heroCopy) {
       const textLeft = parseFloat(window.getComputedStyle(heroCopy).paddingLeft) || 0;
