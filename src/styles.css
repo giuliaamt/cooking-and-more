@@ -959,12 +959,13 @@ button {
     /* HERO MOBILE */
 
     .hero {
+        --mobile-hero-offset: 104px;
         position: sticky;
         top: 0;
         z-index: 0;
         display: block;
-        min-height: 740px;
-        padding-top: 78px;
+        min-height: calc(var(--mobile-hero-offset) + 662px);
+        padding-top: var(--mobile-hero-offset);
         background: var(--white);
     }
 
@@ -974,8 +975,12 @@ button {
         left: 50%;
         z-index: 30;
         width: 112px;
-        transform: translateX(-50%);
+        transform: translateX(-50%) scale(var(--logo-scale));
         transform-origin: top center;
+    }
+
+    .logo img {
+        mix-blend-mode: multiply;
     }
 
     .hero-copy {
@@ -1008,7 +1013,7 @@ button {
 
     .hero-visual {
         position: absolute;
-        top: 78px;
+        top: var(--mobile-hero-offset);
         left: 0;
         z-index: 1;
         width: 100%;
@@ -1139,22 +1144,22 @@ button {
 
     .art-cabbage {
         left: 50%;
-        bottom: clamp(20px, 4svh, 36px);
-        width: min(82vw, 330px);
+        bottom: clamp(46px, 8svh, 72px);
+        width: min(90vw, 360px);
         transform: translateX(-50%);
     }
 
     .art-eggplants {
         left: 50%;
-        bottom: clamp(20px, 4svh, 38px);
-        width: min(82vw, 330px);
+        bottom: clamp(46px, 8svh, 74px);
+        width: min(90vw, 360px);
         transform: translateX(-50%);
     }
 
     .art-truck {
         left: 50%;
-        bottom: clamp(24px, 4svh, 40px);
-        width: min(78vw, 315px);
+        bottom: clamp(50px, 8.5svh, 78px);
+        width: min(88vw, 350px);
         transform: translateX(-50%);
     }
 
@@ -1258,18 +1263,18 @@ button {
     }
 
     .card-copy .copy {
-        margin-top: 18px;
+        margin-top: 30px;
     }
 
     .art-cabbage,
     .art-eggplants {
-        width: min(68vw, 260px);
-        bottom: 18px;
+        width: min(78vw, 300px);
+        bottom: 38px;
     }
 
     .art-truck {
-        width: min(66vw, 250px);
-        bottom: 24px;
+        width: min(76vw, 285px);
+        bottom: 42px;
     }
 
     .contact {

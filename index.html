@@ -188,7 +188,7 @@
   const updateLogoScale = () => {
     const shrinkDistance = 240;
     const progress = Math.min(window.scrollY / shrinkDistance, 1);
-    const expandedScale = getSafeExpandedLogoScale();
+    const expandedScale = mobileCardsQuery.matches ? 1.42 : getSafeExpandedLogoScale();
     const scale = 1 + (expandedScale - 1) * (1 - progress);
 
     document.documentElement.style.setProperty("--logo-scale", scale.toFixed(3));
